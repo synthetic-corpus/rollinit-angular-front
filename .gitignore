@@ -1,6 +1,9 @@
 basic-front/
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Secrets
+auth_config.json
+
 # Compiled output
 /dist
 /tmp
