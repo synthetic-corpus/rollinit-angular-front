@@ -1,0 +1,44 @@
+
+<form [formGroup]="npcForm" (ngSubmit)="onAddNpc()" *ngIf ="!maxed_out">
+  <mat-card>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+        <input matInput="name" formControlName="nameFC">
+        <mat-error *ngIf="!npcForm.get('nameFC').valid && npcForm.get('nameFC').touched">Must have Letters!</mat-error>
+      </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Initiative</mat-label>
+      <input matInput formControlName="initiativeFC" type="number" [(ngModel)]="initiative">
+      <mat-error *ngIf="!npcForm.get('initiativeFC').valid && npcForm.get('initiativeFC').touched">Must have initiatvie!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Armor</mat-label>
+      <input matInput formControlName="armorFC" type="number" [(ngModel)]="armor">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Initiative Roll Method</mat-label>
+      <mat-select matNativeControl required [(value)]="roll_method">
+        <mat-option value="normal"><fa-icon [icon]="dice" class="normal"></fa-icon><span class="option">Normal</span></mat-option>
+        <mat-option value="advantage"><fa-icon [icon]="dice" class="advantage"></fa-icon><span class="option">Advantage</span></mat-option>
+        <mat-option value="disadvantage"><fa-icon [icon]="dice" class="disadvantage"></fa-icon><span class="option">Disadvantage</span></mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Notes</mat-label>
+      <textarea matInput formControlName="notesFC"></textarea>
+      <mat-error *ngIf="!npcForm.get('notesFC').valid && npcForm.get('notesFC').touched">Must have Letters!</mat-error>
+    </mat-form-field>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" [disabled]="!npcForm.valid" type="submit"><mat-icon>done</mat-icon><span> Done!</span></button>
+      <button type="button" color="warn" mat-flat-button (click) = "onCancelNpc()"><mat-icon>cancel</mat-icon><span> cancel</span></button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+<div *ngIf = "maxed_out">
+  <!-- If maxed out....-->
+  <p>
+    Only a max of Twelve NPCs per encounter. Delete one to add more.
+  </p>
+</div>
+<br>

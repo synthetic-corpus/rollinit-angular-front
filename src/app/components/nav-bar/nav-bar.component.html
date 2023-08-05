@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+    <!--<a routerLink="">
+      <button mat-fab color="primary">
+        <mat-icon>home</mat-icon>
+      </button>
+    </a> -->
+  <mat-toolbar-row>
+    <img
+        *ngIf="auth.user$ | async as user"
+        [src]="user.picture"
+        style="width: 75px;"
+      />
+    <span class="nav-bar-spacer"></span>
+      <button mat-button *ngIf="userReady == false" (click)="addSelf()">Click Here to Complete Sign up</button>
+      <span *ngIf="myCampaign">Tent Card App</span>
+    <span class="nav-bar-spacer"></span>
+
+    <button mat-button id="userMenu" [matMenuTriggerFor]="user">
+      <mat-icon>
+        menu
+      </mat-icon>
+    </button>
+    <mat-menu #user="matMenu">
+      <a routerLink="home">
+        <button mat-menu-item>
+          <mat-icon>home</mat-icon>
+          <span>home</span>
+        </button>
+      </a>
+      <a routerLink="tents">
+        <button mat-menu-item>
+          <mat-icon>face</mat-icon>
+          <span>players</span>
+        </button>
+      </a>
+      <a routerLink="encounters">
+        <button mat-menu-item>
+          <mat-icon><fa-icon [icon]="npcs"></fa-icon></mat-icon>
+          <span>encounters</span>
+        </button>
+      </a>
+      <a routerLink="help">
+        <button mat-menu-item>
+          <mat-icon><fa-icon [icon]="help"></fa-icon></mat-icon>
+          <span>help</span>
+        </button>
+      </a>
+      <a routerLink="support">
+        <button mat-menu-item>
+          <mat-icon><fa-icon [icon]="support"></fa-icon></mat-icon>
+          <span>support</span>
+        </button>
+      </a>
+      <button *ngIf="auth.user$ | async as user" mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>

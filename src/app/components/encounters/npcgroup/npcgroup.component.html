@@ -1,0 +1,32 @@
+
+<mat-drawer-container class="longContainer">
+  <mat-drawer #newMonster>
+    <app-npcadd
+      [maxed_out]="web_npcs.length >= 12"
+      (newNpc)="onCreateNpc($event)"
+      (newNpc)="newMonster.toggle()"
+      (cancelNpc)="newMonster.toggle()"
+    ></app-npcadd>
+  </mat-drawer>
+  <mat-card>
+    <mat-card-title>{{ encounter_name }}</mat-card-title>
+    <button mat-flat-button type="button" color="accent" [disabled]="web_npcs.length >= 12" class="longButton" (click)="newMonster.toggle()"><mat-icon>add_circle_outline</mat-icon><span> Add an NPC</span></button>
+    <app-npc
+      *ngFor="let npc of web_npcs"
+      (npcChanged)="onUpdateNpc($event)"
+      (npcDuplicated)="onDuplicateNpc($event)"
+      (npcDeleted)="onDeleteNpc($event)"
+      [maxed_out]="web_npcs.length >= 12"
+      [id]="npc.web_element_id"
+      [web_element_id]="npc.web_element_id"
+      [name]="npc.name"
+      [initiative]="npc.initiative"
+      [armor]="npc.ac"
+      [notes]="npc.notes"
+      [roll_method]="npc.roll_method || 'normal'"
+      >
+    </app-npc>
+
+  </mat-card>
+</mat-drawer-container>
+

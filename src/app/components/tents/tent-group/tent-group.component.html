@@ -1,0 +1,33 @@
+<mat-drawer-container class="longContainer">
+  <button type="button" color="accent" class="longButton" mat-flat-button (click) = "newChar.toggle()" [disabled]="web_players.length >= 8"><mat-icon>add_circle_outline</mat-icon><span> Add a Character</span></button>
+  <mat-drawer #newChar>
+    <app-newtent
+      *ngIf = "web_players.length < 8"
+      (newPlayer) = "onReload()"
+      (newPlayer) = "newChar.toggle()"
+      (cancelPlayer) = "newChar.toggle()"
+    >
+    </app-newtent>
+    <div *ngIf = "web_players.length >= 8">
+      <p>Max characters have been created</p>
+      <button type="button" color="warn" mat-flat-button (click) = "newChar.toggle()"><mat-icon>cancel</mat-icon><span> close</span></button>
+    </div>
+  </mat-drawer>
+  <app-playercharacter
+    *ngFor = "let tent of web_players"
+    [_id] = "tent._id"
+    [_user_id] = "tent._user_id"
+    [web_element_id]="tent.web_element_id"
+    [player] = "tent.player"
+    [character]="tent.character"
+    [initiative]="tent.initiative"
+    [passive_perception]="tent.passive_perception"
+    [spell_dc] = "tent.spell_dc"
+    [ac] = "tent.ac"
+    [notes] = "tent.notes"
+    [roll_method] = "tent.roll_method || 'normal'"
+    (playerChanged) = "onUpdatePlayer($event)"
+    (playerDeleted) = "onDeletePlayer($event)"
+  ></app-playercharacter>
+</mat-drawer-container>
+

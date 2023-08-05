@@ -1,0 +1,88 @@
+<mat-card>
+  <mat-card-title>What Is this?</mat-card-title>
+  <mat-card-content>
+    <p>
+      This is a tool to automatically roll initative at the push of a button.
+    </p>
+    <p>
+      This is intended to replace the sometimes cumbersome, and game flow breaking process
+      of players rolling iniative, dm rolling for monsters, then calling out order etc.
+    </p>
+    <p>
+      This tool still assumes table top play in which the DM will use tents cards.
+      It is optimized for table top, in person play, specifically for Adventure's League games.
+    </p>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-title>How to Prepare Encounters</mat-card-title>
+  <p>
+    Prior to your game day, select the encounters button from that nav menu. <mat-icon>menu</mat-icon>
+    in the upper right.
+  </p>
+  <p>
+    Each Encounter has a name, and a list of monsters with an initiative motivers.
+    Each "monster" you add can represet a single npc or group. You must enter
+    an initiative modifier between -10 and 10.
+  </p>
+  <p>
+    For ease of use, you can duplicate the same monster with the copy icon. <mat-icon>file_copy</mat-icon>
+  </p>
+  <p>
+    Once saved, your encounters will be saved under the encounters page.
+  </p>
+</mat-card>
+<mat-card>
+  <mat-card-title>When to add Player Characters</mat-card-title>
+  <p>
+    Using the same menu option in the upper right select "player". Here,
+    you can add the players who are at your table. The player forms contains
+    more information to be filled such as AC, DC etc. As always, you must
+    include an initiative modifier between -10 and 10.
+  </p>
+</mat-card>
+<mat-card>
+  <mat-card-title>Running an Encounter</mat-card-title>
+  <p>
+    Navigate to the encounters page from the top menu. Select run your encounter
+    by selected the play button. <mat-icon>play_arrow</mat-icon>
+  </p>
+  <p>
+    ....And there it is! :-) All monsters, players, have now been rolled and are in initiative order.
+    From here you can arrange your tent cards or use what ever your like to keep track of turns in a round.
+  </p>
+</mat-card>
+<mat-card>
+  <mat-card-title>Advantage and Disadvantage rolls</mat-card-title>
+  <p>All players and NPC start with their inititive as  normal. Anywhere you see
+     the dice icon you can set a roll to default as advantage or disadvantage.
+     Colors of dice are color coded.
+  </p>
+  <ul>
+    <li>
+      <mat-icon><fa-icon class="normal" [icon]="dice"></fa-icon></mat-icon>
+      <span class="option">normal roll</span>
+    </li>
+    <li>
+      <mat-icon><fa-icon class="advantage" [icon]="dice"></fa-icon></mat-icon>
+      <span class="option">advantage roll</span>
+    </li>
+    <li>
+      <mat-icon><fa-icon class="disadvantage" [icon]="dice"></fa-icon></mat-icon>
+      <span class="option">disadvantage roll</span>
+    </li>
+  </ul>
+  <p>
+    At the initiive order screen, you can also click this icon to re-roll dice for individual combtants.
+  </p>
+</mat-card>
+<mat-card>
+  <mat-card-title>FAQs</mat-card-title>
+  <mat-card-subtitle>How are Ties Broken?</mat-card-subtitle>
+  <p>Ties are broken like this:</p>
+  <ol>
+    <li>Highest Modifier gets precedence.</li>
+    <li>If both Modifiers are equal, roll anoter d20</li>
+    <li>In the extremely unlikely event that there is a tie, modifiers are equal, and the 2nd d20 roll is equal... issue solved by mysteries of the Javascript sort functions</li>
+  </ol>
+</mat-card>

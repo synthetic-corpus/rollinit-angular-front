@@ -1,0 +1,23 @@
+<mat-list-item>
+  <button mat-button id="reRollButton" [matMenuTriggerFor]="reRollMenu">
+    <mat-icon [ngClass]="last_roll_method"><fa-icon [icon]="dice"></fa-icon></mat-icon>
+  </button>
+  <mat-menu #reRollMenu>
+    <button mat-menu-item (click)="onReRoll('normal')">
+      <mat-icon><fa-icon class="normal" [icon]="dice"></fa-icon></mat-icon>
+      <span>normal re-roll</span>
+    </button>
+    <button mat-menu-item (click)="onReRoll('advantage')">
+      <mat-icon><fa-icon class="advantage" [icon]="dice"></fa-icon></mat-icon>
+      <span>advantage re-roll</span>
+    </button>
+    <button mat-menu-item (click)="onReRoll('disadvantage')">
+      <mat-icon><fa-icon class="disadvantage" [icon]="dice"></fa-icon></mat-icon>
+      <span>disadvantage re-roll</span>
+    </button>
+  </mat-menu>
+  <span matline [ngClass]="active ? 'active' : 'inactive'" (click)="onToggleActive()">{{ name}} - {{ roll }}</span>
+  <button mat-icon-button color="warn" (click)="onDeleteTumbler()">
+    <mat-icon matListIcon>delete</mat-icon>
+  </button>
+</mat-list-item>

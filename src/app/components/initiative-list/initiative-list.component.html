@@ -1,0 +1,28 @@
+<mat-list>
+  <app-tumbler
+    *ngFor="let tumble of init_list"
+    [name]="tumble.name"
+    [web_element_id]="tumble.web_element_id"
+    [roll]="tumble.init"
+    [last_roll_method]="tumble.default_roll"
+
+    (rollAgain)="onReRoll($event)"
+    (deleteTumbler)="onDeleteElement($event)"
+  ></app-tumbler>
+</mat-list>
+
+<!--<button mat-flat-button color="primary" (ngSubmit)="onSubmitQuickie()">
+  <form [formGroup]="addQuickie">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+        <input matInput="name" formControlName="nameFC">
+        <mat-error *ngIf="!addQuickie.get('nameFC').valid && addQuickie.get('nameFC').touched">Must have Letters!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Initiative</mat-label>
+      <input matInput formControlName="initiativeFC" type="number">
+      <mat-error *ngIf="!addQuickie.get('initiativeFC').valid && addQuickie.get('initiativeFC').touched">Must have initiatvie!</mat-error>
+    </mat-form-field>
+  </form>
+  <mat-icon>add_box</mat-icon>
+</button>-->

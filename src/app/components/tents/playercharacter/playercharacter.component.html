@@ -1,0 +1,83 @@
+<mat-card *ngIf="editting === false">
+  <mat-card-title>{{ character }}</mat-card-title>
+  <mat-card-subtitle>{{ player }}</mat-card-subtitle>
+  <mat-card-content>
+    <span>Initiative: {{ initiative }}</span>
+    <span *ngIf="ac"> - Armor: {{ ac }}</span>
+    <span *ngIf="spell_dc"> - Spell DC: {{ spell_dc }}</span>
+    <span *ngIf="passive_perception"> - PP: {{ passive_perception }}</span>
+  </mat-card-content>
+  <mat-card-content *ngIf="notes">
+    {{ notes }}
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color = "primary" (click)="toggleEdit()"><mat-icon>edit</mat-icon></button>
+    <button mat-button color = "warn" (click)="onDeleteMe()"><mat-icon>delete</mat-icon></button>
+    <!--<button mat-button><mat-icon [ngClass]="roll_method"><fa-icon [icon]="dice"></fa-icon></mat-icon></button> -->
+    <button mat-button id="reRollButton" [matMenuTriggerFor]="reRollMenu">
+      <mat-icon [ngClass]="roll_method"><fa-icon [icon]="dice"></fa-icon></mat-icon>
+    </button>
+    <mat-menu #reRollMenu>
+      <button mat-menu-item (click)="onChangeRoll('normal')">
+        <mat-icon><fa-icon class="normal" [icon]="dice"></fa-icon></mat-icon>
+        <span>normal</span>
+      </button>
+      <button mat-menu-item (click)="onChangeRoll('advantage')">
+        <mat-icon><fa-icon class="advantage" [icon]="dice"></fa-icon></mat-icon>
+        <span>advantage</span>
+      </button>
+      <button mat-menu-item (click)="onChangeRoll('disadvantage')">
+        <mat-icon><fa-icon class="disadvantage" [icon]="dice"></fa-icon></mat-icon>
+        <span>disadvantage</span>
+      </button>
+    </mat-menu>
+  </mat-card-actions>
+</mat-card>
+<form *ngIf="editting === true" [formGroup]="playerForm" (ngSubmit)="onSubmit()">
+  <mat-card >
+    <mat-card-subtitle>Editting {{ character }}</mat-card-subtitle>
+    <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Character</mat-label>
+          <input matInput="Character" formControlName="characterFC">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Character</mat-label>
+          <input matInput="Player" formControlName="playerFC">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Initiative</mat-label>
+          <input matInput formControlName="initiativeFC" type="number" [(ngModel)]="initiative">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Armor</mat-label>
+          <input matInput formControlName="armorFC" type="number" [(ngModel)]="ac">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Spell DC</mat-label>
+          <input matInput formControlName="spell_dcFC">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Passive Perception</mat-label>
+          <input matInput formControlName="passive_perceptionFC">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Initiative Roll Method</mat-label>
+          <mat-select matNativeControl required [(value)]="roll_method">
+            <mat-option value="normal"><fa-icon [icon]="dice" class="normal"></fa-icon><span class="option">Normal</span></mat-option>
+            <mat-option value="advantage"><fa-icon [icon]="dice" class="advantage"></fa-icon><span class="option">Advantage</span></mat-option>
+            <mat-option value="disadvantage"><fa-icon [icon]="dice" class="disadvantage"></fa-icon><span class="option">Disadvantage</span></mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Notes</mat-label>
+          <textarea matInput="Notes" formControlName="notesFC"></textarea>
+        </mat-form-field>
+      <mat-card-actions>
+        <button mat-flat-button type="submit" color="primary" [disabled]="!playerForm.valid"><mat-icon>done</mat-icon><span> Done!</span></button>
+        <button type="button" color="warn" mat-flat-button (click) = "toggleEdit()"><mat-icon>cancel</mat-icon><span> cancel</span></button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</form>
+<br>

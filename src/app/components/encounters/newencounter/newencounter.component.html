@@ -1,0 +1,43 @@
+
+<mat-drawer-container class="longContainer">
+  <mat-drawer #newMonster>
+    <app-npcadd
+      [maxed_out]="web_npcs.length >= 12"
+      (newNpc)="onCreateNpc($event)"
+      (newNpc)="newMonster.toggle()"
+      (cancelNpc)="newMonster.toggle()"
+    ></app-npcadd>
+
+  </mat-drawer>
+  <form [formGroup]="encounterForm">
+    <mat-card>
+      <mat-card-subtitle>Adding a new encounter!</mat-card-subtitle>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput="name" formControlName="encounterFC">
+        <mat-error *ngIf="!encounterForm.get('encounterFC').valid && encounterForm.get('encounterFC').touched">Must have a Name!</mat-error>
+      </mat-form-field>
+      <mat-card-actions>
+        <!-- Add a character. Save the Form -->
+
+        <button mat-flat-button color="primary" type="submit" [disabled]="web_npcs.length === 0" (click)="onSave()"><mat-icon>done</mat-icon><span>Save Encounter</span></button>
+      </mat-card-actions>
+      <button mat-flat-button type="button" color="accent" [disabled]="web_npcs.length >= 12" class="longButton" (click)="newMonster.toggle()"><mat-icon>add_circle_outline</mat-icon><span> Add an NPC</span></button>
+      <app-npc
+        *ngFor="let npc of web_npcs"
+        (npcChanged)="onUpdateNpc($event)"
+        (npcDuplicated)="onDuplicateNpc($event)"
+        (npcDeleted)="onDeleteNpc($event)"
+        [maxed_out]="web_npcs.length >= 12"
+        [id]="npc.web_element_id"
+        [web_element_id]="npc.web_element_id"
+        [name]="npc.name"
+        [initiative]="npc.initiative"
+        [armor]="npc.ac"
+        [notes]="npc.notes"
+        [roll_method]="npc.roll_method || 'normal'"
+        >
+      </app-npc>
+    </mat-card>
+  </form>
+</mat-drawer-container>

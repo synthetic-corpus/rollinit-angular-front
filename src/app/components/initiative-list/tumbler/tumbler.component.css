@@ -1,0 +1,23 @@
+.inactive {
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: line-through;
+  opacity: .5
+}
+
+.active {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.advantage {
+  color: green
+}
+
+.disadvantage {
+  color: red
+}
+
+.normal {
+  color: black
+}

@@ -1,0 +1,54 @@
+
+<div>
+  <form [formGroup]="newPlayerCharacter" (ngSubmit)="onSave()">
+    <mat-form-field appearance="fill">
+      <mat-label>Whose the Player?</mat-label>
+      <input matInput="Whose the Player?" formControlName="playernameFC">
+      <mat-error *ngIf="!newPlayerCharacter.get('playernameFC').valid && newPlayerCharacter.get('playernameFC').touched">Must have Letters!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>What's the Character Name?</mat-label>
+      <input matInput="What's the Character Name?" formControlName="characterNameFC">
+      <mat-error *ngIf="!newPlayerCharacter.get('characterNameFC').valid && newPlayerCharacter.get('characterNameFC').touched">Must have Letters!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Initiative</mat-label>
+      <input matInput="Initiative" formControlName="initiativeFC" type="number">
+      <mat-error *ngIf="!newPlayerCharacter.get('initiativeFC').valid && newPlayerCharacter.get('initiativeFC').touched">Must have initiatvie!</mat-error>
+      <mat-hint *ngIf="newPlayerCharacter.get('initiativeFC').touched">The Initiative modifier. E.g. 2 if the character's dex is 14 or 7 if Dex 14 and the Alert feat</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Passive Perception</mat-label>
+      <input matInput="Passive Perception" formControlName="passive_perceptionFC" type="number">
+      <mat-error *ngIf="!newPlayerCharacter.get('passive_perceptionFC').valid && newPlayerCharacter.get('passive_perceptionFC').touched">Must have Passive Perception!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Spell DC</mat-label>
+      <input matInput="Spell DC" formControlName="spell_dcFC" type="number">
+      <mat-hint *ngIf="newPlayerCharacter.get('spell_dcFC').touched">Spell DC is optional. Max is 22. Is your Character some kind of <em>god?</em></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Armor</mat-label>
+      <input matInput="Armor" formControlName="acFC" type="number">
+      <mat-error *ngIf="!newPlayerCharacter.get('acFC').valid && newPlayerCharacter.get('acFC').touched">Armor must be between 0 and 30</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Initiative Roll Method</mat-label>
+      <mat-select matNativeControl required [(value)]="roll_method">
+        <mat-option value="normal"><fa-icon [icon]="dice" class="normal"></fa-icon><span class="option">Normal</span></mat-option>
+        <mat-option value="advantage"><fa-icon [icon]="dice" class="advantage"></fa-icon><span class="option">Advantage</span></mat-option>
+        <mat-option value="disadvantage"><fa-icon [icon]="dice" class="disadvantage"></fa-icon><span class="option">Disadvantage</span></mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Notes</mat-label>
+      <textarea matInput="Notes" formControlName="notesFC"></textarea>
+      <mat-hint *ngIf="newPlayerCharacter.get('notesFC').touched">This Field is optional.</mat-hint>
+      <mat-error *ngIf="!newPlayerCharacter.get('notesFC').valid">Must have Letters!</mat-error>
+    </mat-form-field>
+    <mat-card-actions>
+      <button type="button" mat-flat-button color="primary" [disabled]="!newPlayerCharacter.valid" type="submit"><mat-icon>done</mat-icon> Save</button>
+    <button type="button" color="warn" mat-flat-button (click) = "onCancelPlayer()"><mat-icon>cancel</mat-icon><span> cancel</span></button>
+    </mat-card-actions>
+  </form>
+</div>

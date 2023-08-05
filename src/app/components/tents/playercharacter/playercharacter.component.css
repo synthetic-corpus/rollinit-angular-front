@@ -1,0 +1,16 @@
+.option {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.advantage {
+  color: green
+}
+
+.disadvantage {
+  color: red
+}
+
+.normal {
+  color: black
+}

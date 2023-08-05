@@ -1,0 +1,19 @@
+<a mat-flat-button color="accent" class="longButton" [routerLink]="['/new','encounter']">
+  <mat-icon>add_circle_outline</mat-icon><span> Add an Encounter</span>
+</a>
+<div *ngFor="let encounter of myEncounters">
+  <mat-card >
+
+    <mat-card-title>
+      {{ encounter.name }}
+    </mat-card-title>
+    <mat-card-actions>
+      <!-- Run encounter, edit encounter, delete encounter -->
+      <a [routerLink]="[encounter._id,'run']"><button mat-button color='primary'><mat-icon>play_arrow</mat-icon></button></a>
+      <a [routerLink]="[encounter._id]"><button mat-button color='primary'><mat-icon>edit</mat-icon></button></a>
+      <button mat-button color='warn' (click)="onDeleteEncounter(encounter._id)"><mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+  <br>
+</div>
+
