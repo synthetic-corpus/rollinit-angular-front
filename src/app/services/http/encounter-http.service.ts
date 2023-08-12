@@ -12,22 +12,22 @@ export class EncounterHttpService {
   constructor(private http: HttpClient) { }
 
   createEncounter(newEncounter: EncounterHttp ){
-    return this.http.post(`${env.auth.apiUri}/encounter/`,newEncounter, CORS)
+    return this.http.post(`${env.auth.apiUri}/encounters/`,newEncounter, CORS)
   }
 
   retrieveEncounter(id: string){
-    return this.http.get(`${env.auth.apiUri}/encounter/${id}`, CORS)
+    return this.http.get(`${env.auth.apiUri}/encounters/${id}`, CORS)
   }
 
   retrieveEncounters(){
-    return this.http.get(`${env.auth.apiUri}/encounter`, CORS)
+    return this.http.get(`${env.auth.apiUri}/encounters`, CORS)
   }
 
   updateEncounter(id: string, patch: EncounterPatch){
-    return this.http.patch(`${env.auth.apiUri}/encounter/${id}`, patch, CORS)
+    return this.http.patch(`${env.auth.apiUri}/encounters/${id}`, patch, CORS)
   }
 
   deleteEncounter(id: string){
-    return this.http.delete(`${env.auth.apiUri}/encounter/${id}`, CORS)
+    return this.http.delete(`${env.auth.apiUri}/encounters/${id}`, CORS)
   }
 }
